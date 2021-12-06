@@ -38,9 +38,9 @@ def print_linklist(lk):
         lk = lk.next
 
 
-lk = create_linklist_tail([1,2,3,4])
-index = 2
-node = ListNode(5)
+# lk = create_linklist_tail([1,2,3,4])
+# index = 2
+# node = ListNode(5)
 # print(lk.val)
 # print(lk.next.val)
 
@@ -55,8 +55,9 @@ def inter_after(lk ,index, node):
     catnode.next = node
     return lk,dummy
 
-new_lk, dummy = inter_after(lk, index, node)
-print_linklist(new_lk)
+# new_lk, dummy = inter_after(lk, index, node)
+# print_linklist(new_lk)
 # output: 1->2->5->3->4->
-print_linklist(dummy)
+# print_linklist(dummy)
 # output: 2->5->3->4->
+
