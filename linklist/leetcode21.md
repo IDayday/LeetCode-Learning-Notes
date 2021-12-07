@@ -1,8 +1,8 @@
 ### Merge two sorted lists
 
 #### Example
->Input: 1->2->4, 1->3->4
-Output: 1->1->2->3->4->4
+* Input: 1->2->4, 1->3->4
+* Output: 1->1->2->3->4->4
 
 ListNode定义的属性包含val和next
 
