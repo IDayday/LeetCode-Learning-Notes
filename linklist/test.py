@@ -2,7 +2,7 @@ from typing import List
 
 
 class ListNode:
-    def __init__(self, val, next=None):
+    def __init__(self, val=0, next=None):
         self.val = val
         self.next = None
 # 头插法
@@ -61,3 +61,32 @@ def inter_after(lk ,index, node):
 # print_linklist(dummy)
 # output: 2->5->3->4->
 
+
+class Solution:
+    def reverseList(self, head):
+        pre, curr = None, head # 新增一个None节点作为伪头节点，记录当前节点curr
+        while curr: # 如果当前节点非空
+            tmp = curr.next # 保存当前节点后的链表（指针指向头节点）
+            curr.next = pre # 当前节点连接前一个节点
+            pre = curr # pre指针指向当前节点
+            curr = tmp # curr指针指向保存的头节点
+        return pre # 如果curr为空，则其前一个节点就是可返回的头节点
+    def addTwoNumbers(self, l1, l2):
+        re_l1 = self.reverseList(l1)
+        re_l2 = self.reverseList(l2)
+        head = None
+        carry = 0
+        while re_l1 or re_l2 or carry:
+            v1 = re_l1.val if re_l1 else 0
+            v2 = re_l2.val if re_l2 else 0
+            carry, val = divmod(v1 + v2 + carry, 10)
+            head = ListNode(val, head)
+            re_l1 = re_l1.next if re_l1 else None
+            re_l2 = re_l2.next if re_l2 else None
+        return head
+
+S = Solution()
+lk_1 = create_linklist_tail([7,2,4,3])
+lk_2 = create_linklist_tail([5,6,4])
+add_sum = S.addTwoNumbers(lk_1,lk_2)
+print_linklist(add_sum)

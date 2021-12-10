@@ -37,4 +37,31 @@ class Solution:
         return head
 
 # 另一种合适的方法应该是先将链表反转，然后对应位相加，同时记录进位符，这样空间复杂度就可以保持O(1)
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        pre, curr = None, head # 新增一个None节点作为伪头节点，记录当前节点curr
+        while curr: # 如果当前节点非空
+            tmp = curr.next # 保存当前节点后的链表（指针指向头节点）
+            curr.next = pre # 当前节点连接前一个节点
+            pre = curr # pre指针指向当前节点
+            curr = tmp # curr指针指向保存的头节点
+        return pre # 如果curr为空，则其前一个节点就是可返回的头节点
+    def addTwoNumbers(self, l1, l2):
+        re_l1 = self.reverseList(l1)
+        re_l2 = self.reverseList(l2)
+        head = None
+        carry = 0
+        while re_l1 or re_l2 or carry:
+            v1 = re_l1.val if re_l1 else 0
+            v2 = re_l2.val if re_l2 else 0
+            carry, val = divmod(v1 + v2 + carry, 10)
+            head = ListNode(val, head)
+            re_l1 = re_l1.next if re_l1 else None
+            re_l2 = re_l2.next if re_l2 else None
+        return head
 ```
